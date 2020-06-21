@@ -2,7 +2,7 @@
 
 .globl mutex_lock
 mutex_lock:
-
+check_lock:
 	ldr  x7, =PBASE  
 	ldr  x6, =0x00215040
 	ldr  x5, =0x00215054
@@ -11,12 +11,12 @@ mutex_lock:
 	ldr  w4, [x5]
 	ldr  w5, =0x20
 	and  w4, w4, w5
-	cbz  w4, mutex_lock
+	cbz  w4, check_lock
 	ldr w7, =48
 	str  w7, [x6] 
 
 	ldxr x1, [x0]
-	cbnz x1, mutex_lock
+	cbnz x1, check_lock
 	ldr x1, =1	
 
 	ldr  x7, =PBASE  
