@@ -1,8 +1,9 @@
 #include "utils.h"
+#include "mutex.h"
 #include "peripherals/mini_uart.h"
 #include "peripherals/gpio.h"
 
-unsigned long lock = 0;
+static int lock = 0;
 
 void uart_send ( char c )
 {
