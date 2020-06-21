@@ -24,9 +24,9 @@ char uart_recv ( void )
 
 void uart_send_string(char* str)
 {
-	uart_send('\n');
+	uart_send('A');
 	mutex_lock(&lock);
-	uart_send(0x0D);
+	uart_send('B');
 	for (int i = 0; str[i] != '\0'; i ++) {
 		uart_send((char)str[i]);
 	}

@@ -8,6 +8,9 @@ void kernel_main(void)
 }
 
 void other_core_main(int CPUID){
+
+	delay(500);
+	uart_send('a');
 /*	if (CPUID == 1)
 		uart_send_string("Second CPU\r\n");
 	if (CPUID == 2)
