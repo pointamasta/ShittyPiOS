@@ -3,7 +3,7 @@
 
 #include "utils.h"
 
-extern void mutex_lock(int *mutex);
-extern void mutex_unlock(int *mutex);
+extern void mutex_lock(unsigned int *mutex);
+extern void mutex_unlock(unsigned int *mutex);
 
 #endif /*_MUTEX_H*/

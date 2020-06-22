@@ -7,7 +7,7 @@ _start:
 	mrs	x0, mpidr_el1		
 	and	x0, x0,#0xFF		// Check processor id
 	cbz	x0, master		// Hang for all non-primary CPU
-	b	proc_hang
+	bl	slaves
 
 proc_hang: 
 	b 	proc_hang
@@ -28,5 +28,5 @@ slaves:
 	add	x2, x2, #2
 	mul	x1, x1, x2
 	mov	sp, x1 
-	bl	other_core_main
+	b	other_core_main
 	b 	proc_hang		// should never come here

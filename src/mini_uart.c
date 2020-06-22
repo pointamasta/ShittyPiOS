@@ -25,21 +25,16 @@ char uart_recv ( void )
 
 void uart_send_string(char* str)
 {
-	uart_send('A');
 	mutex_lock(&lock);
-	uart_send('B');
 	for (int i = 0; str[i] != '\0'; i ++) {
 		uart_send((char)str[i]);
 	}
-	uart_send('C');
 	mutex_unlock(&lock);
-	uart_send('D');
 }
 
 void uart_init ( void )
 {
-//	mutex_unlock((void *)&lock);
-//	mutex_lock((void *)&lock);
+	mutex_lock(&lock);
 	unsigned int selector;
 
 	selector = get32(GPFSEL1);
@@ -63,5 +58,5 @@ void uart_init ( void )
 	put32(AUX_MU_BAUD_REG,270);             //Set baud rate to 115200
 
 	put32(AUX_MU_CNTL_REG,3);               //Finally, enable transmitter and receiver
-//	mutex_unlock((void *)&lock);
+	mutex_unlock(&lock);
 }

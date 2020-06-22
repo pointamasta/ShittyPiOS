@@ -54,11 +54,13 @@ mutex_unlock:
 	ldr w7, [x0]
 	str  w7, [x6] 
 	
-	dmb sy
+	ldaxr w1, [x0]
+	cmp w1, #0
+	beq unlocked
 	ldr w1, =0
 	stxr w2, w1, [x0]
-	dmb sy
 	cmp w2, #0 
 	bne mutex_unlock
-	
+unlocked:	
+	dmb sy
 	ret

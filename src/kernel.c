@@ -7,16 +7,15 @@ void kernel_main(void)
 	uart_send_string("First CPU\r\n");
 }
 
-void other_core_main(int CPUID){
-
-	delay(500);
-	uart_send('a');
-/*	if (CPUID == 1)
+void other_core_main(int CPUID)
+{
+	uart_send_string("bite mais pas le meme core\r\n");
+	if (CPUID == 1)
 		uart_send_string("Second CPU\r\n");
 	if (CPUID == 2)
 		uart_send_string("Third CPU\r\n");
 	if (CPUID == 3)
 		uart_send_string("Fourth CPU\r\n");
-*/
+	
 	while(1);
 }
