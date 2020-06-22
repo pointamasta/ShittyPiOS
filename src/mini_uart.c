@@ -3,7 +3,7 @@
 #include "peripherals/mini_uart.h"
 #include "peripherals/gpio.h"
 
-static int lock = 0;
+static unsigned int lock = 0;
 
 void uart_send ( char c )
 {
@@ -31,7 +31,9 @@ void uart_send_string(char* str)
 	for (int i = 0; str[i] != '\0'; i ++) {
 		uart_send((char)str[i]);
 	}
+	uart_send('C');
 	mutex_unlock(&lock);
+	uart_send('D');
 }
 
 void uart_init ( void )
