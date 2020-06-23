@@ -32,6 +32,16 @@ void uart_send_string(char* str)
 	mutex_unlock(&lock);
 }
 
+void led_init(void)
+{
+	unsigned int reg;
+	reg = get32(GPFSEL0);
+	reg &= ~(7<<6);                   // clean gpio2
+	reg |= 1<<6;			  //set gpio2 as output
+	put32(GPFSEL0, reg);
+	put32(GPSET0, 1 << 1);
+}
+
 void uart_init ( void )
 {
 	mutex_lock(&lock);

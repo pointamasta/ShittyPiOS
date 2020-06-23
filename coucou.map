@@ -12,63 +12,64 @@ Linker script and memory map
  .text.boot     0x0000000000000000       0x4c build/boot_s.o
                 0x0000000000000000                _start
 
-.text           0x0000000000000050      0x408
+.text           0x0000000000000050      0x450
  *(.text)
- .text          0x0000000000000050      0x228 build/mini_uart_c.o
+ .text          0x0000000000000050      0x26c build/mini_uart_c.o
                 0x0000000000000050                uart_send
                 0x000000000000009c                uart_recv
                 0x00000000000000dc                uart_send_string
-                0x000000000000014c                uart_init
- .text          0x0000000000000278       0x94 build/kernel_c.o
-                0x0000000000000278                kernel_main
-                0x00000000000002a8                other_core_main
- .text          0x000000000000030c       0x30 build/utils_s.o
-                0x000000000000030c                put32
-                0x0000000000000314                get32
-                0x000000000000031c                safe_get32
-                0x0000000000000324                delay
-                0x0000000000000330                safe_put32
- .text          0x000000000000033c        0x0 build/boot_s.o
- .text          0x000000000000033c       0x10 build/mm_s.o
-                0x000000000000033c                memzero
- *fill*         0x000000000000034c        0x4 
- .text          0x0000000000000350      0x108 build/mutex_s.o
-                0x0000000000000350                mutex_lock
-                0x00000000000003d8                mutex_unlock
+                0x000000000000014c                led_init
+                0x0000000000000190                uart_init
+ .text          0x00000000000002bc       0x98 build/kernel_c.o
+                0x00000000000002bc                kernel_main
+                0x00000000000002f0                other_core_main
+ .text          0x0000000000000354       0x30 build/utils_s.o
+                0x0000000000000354                put32
+                0x000000000000035c                get32
+                0x0000000000000364                safe_get32
+                0x000000000000036c                delay
+                0x0000000000000378                safe_put32
+ .text          0x0000000000000384        0x0 build/boot_s.o
+ .text          0x0000000000000384       0x10 build/mm_s.o
+                0x0000000000000384                memzero
+ *fill*         0x0000000000000394        0x4 
+ .text          0x0000000000000398      0x108 build/mutex_s.o
+                0x0000000000000398                mutex_lock
+                0x0000000000000420                mutex_unlock
 
-.iplt           0x0000000000000458        0x0
- .iplt          0x0000000000000458        0x0 build/mini_uart_c.o
+.iplt           0x00000000000004a0        0x0
+ .iplt          0x00000000000004a0        0x0 build/mini_uart_c.o
 
-.rodata         0x0000000000000458       0x6d
+.rodata         0x00000000000004a0       0x6d
  *(.rodata)
- .rodata        0x0000000000000458       0x6d build/kernel_c.o
+ .rodata        0x00000000000004a0       0x6d build/kernel_c.o
 
-.rela.dyn       0x00000000000004c8        0x0
- .rela.iplt     0x00000000000004c8        0x0 build/mini_uart_c.o
+.rela.dyn       0x0000000000000510        0x0
+ .rela.iplt     0x0000000000000510        0x0 build/mini_uart_c.o
 
-.data           0x00000000000004c5        0x0
+.data           0x000000000000050d        0x0
  *(.data)
- .data          0x00000000000004c5        0x0 build/mini_uart_c.o
- .data          0x00000000000004c5        0x0 build/kernel_c.o
- .data          0x00000000000004c5        0x0 build/utils_s.o
- .data          0x00000000000004c5        0x0 build/boot_s.o
- .data          0x00000000000004c5        0x0 build/mm_s.o
- .data          0x00000000000004c5        0x0 build/mutex_s.o
+ .data          0x000000000000050d        0x0 build/mini_uart_c.o
+ .data          0x000000000000050d        0x0 build/kernel_c.o
+ .data          0x000000000000050d        0x0 build/utils_s.o
+ .data          0x000000000000050d        0x0 build/boot_s.o
+ .data          0x000000000000050d        0x0 build/mm_s.o
+ .data          0x000000000000050d        0x0 build/mutex_s.o
 
-.igot.plt       0x00000000000004c8        0x0
- .igot.plt      0x00000000000004c8        0x0 build/mini_uart_c.o
-                0x00000000000004c8                . = ALIGN (0x8)
-                0x00000000000004c8                bss_begin = .
+.igot.plt       0x0000000000000510        0x0
+ .igot.plt      0x0000000000000510        0x0 build/mini_uart_c.o
+                0x0000000000000510                . = ALIGN (0x8)
+                0x0000000000000510                bss_begin = .
 
-.bss            0x00000000000004c8        0x4
+.bss            0x0000000000000510        0x4
  *(.bss*)
- .bss           0x00000000000004c8        0x4 build/mini_uart_c.o
- .bss           0x00000000000004cc        0x0 build/kernel_c.o
- .bss           0x00000000000004cc        0x0 build/utils_s.o
- .bss           0x00000000000004cc        0x0 build/boot_s.o
- .bss           0x00000000000004cc        0x0 build/mm_s.o
- .bss           0x00000000000004cc        0x0 build/mutex_s.o
-                0x00000000000004cc                bss_end = .
+ .bss           0x0000000000000510        0x4 build/mini_uart_c.o
+ .bss           0x0000000000000514        0x0 build/kernel_c.o
+ .bss           0x0000000000000514        0x0 build/utils_s.o
+ .bss           0x0000000000000514        0x0 build/boot_s.o
+ .bss           0x0000000000000514        0x0 build/mm_s.o
+ .bss           0x0000000000000514        0x0 build/mutex_s.o
+                0x0000000000000514                bss_end = .
 LOAD build/mini_uart_c.o
 LOAD build/kernel_c.o
 LOAD build/utils_s.o

@@ -2,6 +2,7 @@
 #include "utils.h"
 void kernel_main(void)
 {
+	led_init();
 	uart_init();
 	uart_send_string("Hello, world!\r\n");
 	uart_send_string("First CPU\r\n");
